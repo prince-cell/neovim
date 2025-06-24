@@ -32,13 +32,73 @@ return {
       },
     },
   },
+
+  -- Colorscheme
   {
-    "catppuccin/nvim", name = "catppuccin", priority = 1000, enabled = true
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    enabled = true,
   },
+
+  -- Lualine: Delayed until first buffer
   {
-     "LazyVim/LazyVim",
+    "nvim-lualine/lualine.nvim",
+    event = "BufEnter",
+    config = function()
+      require("lualine").setup()
+    end,
+  },
+
+  -- Treesitter: Load on file open
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = {  "BufWinEnter" },
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup {}
+    end,
+  },
+
+  -- Bufferline: Load when additional buffers are added
+  {
+    "akinsho/bufferline.nvim",
+    event = "BufAdd",
+    config = function()
+      require("bufferline").setup {}
+    end,
+  },
+
+  {
+    "folke/noice.nvim",
+    cmd = { "Noice", "NoiceDismiss" }, -- load on demand
+    config = function()
+      require("noice").setup {}
+    end,
+  },
+
+  {
+    "folke/ts-comments.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("ts-comments").setup {}
+    end,
+  },
+
+  {
+    "folke/which-key.nvim",
+    keys = "<leader>", -- load when <leader> is pressed
+    config = function()
+      require("which-key").setup {}
+    end,
+  },
+
+
+  -- LazyVim core config
+  {
+    "LazyVim/LazyVim",
     opts = {
       colorscheme = "catppuccin",
-  },
+    },
   },
 }
