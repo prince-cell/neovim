@@ -36,9 +36,6 @@ return {
     "catppuccin/nvim", name = "catppuccin", priority = 1000, enabled = true
   },
   {
-    "folke/tokyonight.nvim", enabled = false
-  },
-  {
      "LazyVim/LazyVim",
     opts = {
       colorscheme = "catppuccin",
